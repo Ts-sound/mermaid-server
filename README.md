@@ -11,6 +11,19 @@ While this currently serves the diagrams via HTTP, it could easily be manipulate
 Run the container:
 ```
 docker run -d --name mermaid-server -p 80:80 tomwright/mermaid-server:latest
+
+docker run -d --name mermaid-server -p 127.0.0.1:8001:80 tomwright/mermaid-server:latest
+
+docker run -itd --name tong_mermaid_server_1 tong_mermaid_server:latest /bin/bash -c "service ssh start && /bin/bash"
+```
+
+* check docker container ip
+```bash
+docker inspect [container-id]
+```
+```bash
+./app --allow-all-origins=true --mermaid=/usr/local/bin/mmdc --in=./in --out=./out  --puppeteer=./puppeteer-config.json
+
 ```
 
 ### Manually as a go command
@@ -27,7 +40,7 @@ Use the query param 'type' to change between 'png' and 'svg' defaults to 'svg'.
 #### POST
 
 Send a CURL request to generate a diagram via `POST`:
-```
+```bash
 curl --location --request POST 'http://localhost:80/generate' \
 --header 'Content-Type: text/plain' \
 --data-raw 'graph LR
@@ -36,6 +49,30 @@ curl --location --request POST 'http://localhost:80/generate' \
     B-->C
     C-->D
     C-->F
+'
+```
+
+```bash
+curl --location --request POST 'http://172.17.0.2:80/generate' \
+--header 'Content-Type: text/plain' \
+--data-raw 'graph LR
+
+    A-->B
+    B-->C
+    C-->D
+    C-->F
+'
+```
+
+```bash
+curl --location --request POST 'http://172.17.0.2:80/generate' \
+--header 'Content-Type: text/plain' \
+--data-raw 'zenuml
+    title Demo
+    Alice->John: Hello John, how are you?
+    John->Alice: Great!
+    Alice->John: See you later!
+
 '
 ```
 

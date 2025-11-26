@@ -4,3 +4,6 @@ in/
 out/
 .DS_Store
 .idea/
+tomwright_mermaid-server_latest.tar
+tomwright_mermaid-server_latest.tar.gz
+scripts/build.log
