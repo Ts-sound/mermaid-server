@@ -75,11 +75,12 @@ RUN apt install -y --no-install-recommends \
 
 COPY --from=go /root/bin/app ./app
 COPY ./mermaidcli/puppeteer-config.json ./
+COPY entrypoint.sh ./entrypoint.sh
 
 RUN mkdir -p ./in
 RUN mkdir -p ./out
 RUN chmod 0777 ./in
 RUN chmod 0777 ./out
 
-CMD ["./app", "--allow-all-origins=true", "--mermaid=./node_modules/.bin/mmdc", "--in=./in", "--out=./out", "--puppeteer=./puppeteer-config.json"]
+ENTRYPOINT ["bash","/root/entrypoint.sh"]
 

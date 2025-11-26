@@ -14,7 +14,7 @@ docker run -d --name mermaid-server -p 80:80 tomwright/mermaid-server:latest
 
 docker run -d --name mermaid-server -p 127.0.0.1:8001:80 tomwright/mermaid-server:latest
 
-docker run -itd --name tong_mermaid_server_1 tong_mermaid_server:latest /bin/bash -c "service ssh start && /bin/bash"
+docker run -itd --name tong_mermaid_server_1 tong_mermaid_server:latest 
 ```
 
 * check docker container ip
